@@ -46,7 +46,7 @@ def train_new_model():
 
     #convert labels to numbers in class_names
     trainingLabels = trainingLabels.map(class_names)
-    testingLabels = testingLabels.map(class_names)
+    testingLabels = testingLabels
 
     model = keras.Sequential([
         keras.layers.Dense(26, activation='relu'),
@@ -78,9 +78,10 @@ def makePrediction(model, testingData, testingLabels):
     probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
     predictions = probability_model.predict(testingData)
 
-
-    selected_predictions = predictions[210:230]
-    selected_actual = testingLabels[210:230]
+    slice = 70
+    end = slice + 30
+    selected_predictions = predictions[slice:end]
+    selected_actual = testingLabels[slice:end]
 
     fig, axs = plt.subplots(5, 4, figsize=(15, 20))
 
@@ -137,7 +138,7 @@ def main():
         makePrediction(model, testingImages, testingLabels)
 
     else:
-        model, testingImages, testingLabels = train_new_model()
+        train_new_model()
 
 
 
