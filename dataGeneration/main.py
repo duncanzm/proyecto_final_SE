@@ -63,11 +63,9 @@ def createRandomData():
 
 
 if __name__ == '__main__':
-    # for i in range(10):
-    #     print(AmplitudeModifier.loud())
-    # test = np.random.randint(-5, 5, 10)
+    rows_to_generate = 2_000_000
     df = pd.DataFrame()
-    for i in tqdm(range(4)):
+    for i in tqdm(range(rows_to_generate)):
         df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
     print(df)
     print("Quiet: ", quietCount)
