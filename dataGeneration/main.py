@@ -4,7 +4,7 @@ import random
 from tqdm import tqdm
 
 
-frequencies = ["20", "30", "40", "50", "60", "80", "100", "120", "150", "200", "300", "400", "500", "600", "800", "1000", "1200", "2000", "3000", "4000", "5000", "6000", "8000", "10000", "12000", "20000"]
+frequencies = ["20", "30", "40", "50", "60", "80", "100", "120", "150", "200", "300", "400", "500", "600", "800", "1000", "1200", "2000", "3000", "4000", "5000", "6000", "8000", "10000", "12000", "20000", "Ground-truth"]
 
 resonances = [
     ["20", "40", "80"],
@@ -46,15 +46,18 @@ def createRandomData():
     currentProbabilityState = getCurrentProbabilisticState()
     if currentProbabilityState == "normal":
         normalCount = normalCount + 1
+        data["Ground-truth"] = "Normal"
         return data
     random_resonance = random.choice(resonances)
 
 
     if currentProbabilityState == "quiet":
         modifier = AmplitudeModifier.quiet
+        data["Ground-truth"] = "Quiet"
         quietCount = quietCount + 1
     elif currentProbabilityState == "loud":
         modifier = AmplitudeModifier.loud
+        data["Ground-truth"] = "Loud"
         loudCount = loudCount + 1
 
     for affectedResonance in random_resonance:
