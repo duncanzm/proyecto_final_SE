@@ -66,7 +66,7 @@ def createRandomData():
 
 
 if __name__ == '__main__':
-    rows_to_generate = 300_000
+    rows_to_generate = 500_000
     df = pd.DataFrame()
     for i in tqdm(range(rows_to_generate)):
         df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
