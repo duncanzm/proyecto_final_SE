@@ -67,9 +67,13 @@ if __name__ == '__main__':
     #     print(AmplitudeModifier.loud())
     # test = np.random.randint(-5, 5, 10)
     df = pd.DataFrame()
-    for i in tqdm(range(10_000_000)):
+    for i in tqdm(range(4)):
         df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
     print(df)
     print("Quiet: ", quietCount)
     print("Normal: ", normalCount)
     print("Loud: ", loudCount)
+
+
+    df.to_csv("data.csv", index=False)
+    print("Data saved to data.csv")
