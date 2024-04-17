@@ -22,6 +22,7 @@ loudCount = 0
 
 
 def getProbabilisticState(probability: float = 0.9244):
+    probability = 0.2
     tailSize = (1 - probability) / 2
     leftTail = tailSize
     rightTail = 1 - tailSize
@@ -73,7 +74,7 @@ def createRandomData():
 
 
 if __name__ == '__main__':
-    rows_to_generate = 10_000
+    rows_to_generate = 600_000
     df = pd.DataFrame()
     for i in tqdm(range(rows_to_generate)):
         df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
