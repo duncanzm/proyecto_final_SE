@@ -21,7 +21,7 @@ quietCount = 0
 loudCount = 0
 
 
-def getProbabilisticState(probability: float = 0.9544):
+def getProbabilisticState(probability: float = 0.9244):
     tailSize = (1 - probability) / 2
     leftTail = tailSize
     rightTail = 1 - tailSize
