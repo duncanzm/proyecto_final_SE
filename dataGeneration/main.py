@@ -1,7 +1,7 @@
 from AmplitudeModifier import AmplitudeModifier
 import pandas as pd
-import numpy as np
 import random
+from tqdm import tqdm
 
 
 frequencies = ["20", "30", "40", "50", "60", "80", "100", "120", "150", "200", "300", "400", "500", "600", "800", "1000", "1200", "2000", "3000", "4000", "5000", "6000", "8000", "10000", "12000", "20000"]
@@ -15,6 +15,11 @@ resonances = [
     ["3000", "6000", "12000"],
     ["5000", "10000", "20000"]
 ]
+
+normalCount = 0
+quietCount = 0
+loudCount = 0
+
 
 def getProbabilisticState(probability: float = 0.9544):
     tailSize = (1 - probability) / 2
@@ -33,22 +38,24 @@ def getCurrentProbabilisticState():
         return "normal"
 
 def createRandomData():
+    global normalCount, quietCount, loudCount
     data = {}
     for frecuency in frequencies:
         data[frecuency] = AmplitudeModifier.normal()
 
     currentProbabilityState = getCurrentProbabilisticState()
-    print("Creating data with state: ", currentProbabilityState)
-
     if currentProbabilityState == "normal":
+        normalCount = normalCount + 1
         return data
     random_resonance = random.choice(resonances)
 
 
     if currentProbabilityState == "quiet":
         modifier = AmplitudeModifier.quiet
+        quietCount = quietCount + 1
     elif currentProbabilityState == "loud":
         modifier = AmplitudeModifier.loud
+        loudCount = loudCount + 1
 
     for affectedResonance in random_resonance:
         data[affectedResonance] = modifier()
@@ -59,4 +66,10 @@ if __name__ == '__main__':
     # for i in range(10):
     #     print(AmplitudeModifier.loud())
     # test = np.random.randint(-5, 5, 10)
-    print(createRandomData())
+    df = pd.DataFrame()
+    for i in tqdm(range(10_000_000)):
+        df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
+    print(df)
+    print("Quiet: ", quietCount)
+    print("Normal: ", normalCount)
+    print("Loud: ", loudCount)
