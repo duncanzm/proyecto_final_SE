@@ -51,22 +51,29 @@ def createRandomData():
     random_resonance = random.choice(resonances)
 
 
-    if currentProbabilityState == "quiet":
-        modifier = AmplitudeModifier.quiet
-        data["Ground-truth"] = "Quiet"
-        quietCount = quietCount + 1
-    elif currentProbabilityState == "loud":
-        modifier = AmplitudeModifier.loud
-        data["Ground-truth"] = "Loud"
-        loudCount = loudCount + 1
+    readingError = random.randint(0, 99)
+    if readingError > 5:
+        faultyResonance = random.choice(random_resonance)
+        data[faultyResonance] = AmplitudeModifier.normal() * 10
+        data["Ground-truth"] = "Faulty"
 
-    for affectedResonance in random_resonance:
-        data[affectedResonance] = modifier()
+    else:
+        if currentProbabilityState == "quiet":
+            modifier = AmplitudeModifier.quiet
+            data["Ground-truth"] = "Quiet"
+            quietCount = quietCount + 1
+        elif currentProbabilityState == "loud":
+            modifier = AmplitudeModifier.loud
+            data["Ground-truth"] = "Loud"
+            loudCount = loudCount + 1
+
+        for affectedResonance in random_resonance:
+            data[affectedResonance] = modifier()
     return data
 
 
 if __name__ == '__main__':
-    rows_to_generate = 500_000
+    rows_to_generate = 10
     df = pd.DataFrame()
     for i in tqdm(range(rows_to_generate)):
         df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
