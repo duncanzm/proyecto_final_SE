@@ -52,7 +52,7 @@ def createRandomData():
 
 
     readingError = random.randint(0, 99)
-    if readingError > 5:
+    if readingError < 5:
         faultyResonance = random.choice(random_resonance)
         data[faultyResonance] = AmplitudeModifier.normal() * 10
         data["Ground-truth"] = "Faulty"
@@ -73,7 +73,7 @@ def createRandomData():
 
 
 if __name__ == '__main__':
-    rows_to_generate = 500_000
+    rows_to_generate = 10_000
     df = pd.DataFrame()
     for i in tqdm(range(rows_to_generate)):
         df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
