@@ -7,6 +7,7 @@ import {AnalysisResult} from "../../../models/analysis-result";
 import {NgIf} from "@angular/common";
 import {MeasurementErrorComponent} from "./measurement-error/measurement-error.component";
 import {LoadingComponent} from "../shared/loading/loading.component";
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -32,6 +33,8 @@ export class EqualizerComponent implements OnInit{
 
   @Output()
   resetEvent = new EventEmitter<void>();
+
+  loading = false;
 
   constructor(private httpClient:HttpClient) {
   }
@@ -116,10 +119,21 @@ export class EqualizerComponent implements OnInit{
   }
 
   public loadData(){
+    this.loading = true;
     let url = 'https://frequency-checker.wiremockapi.cloud/frequency/';
     this.httpClient.post<AnalysisResult>(url, this.data).subscribe((response) => {
+      this.loading = false;
       this.analysisResult = response;
-    });
+    }, error => {
+      this.loading = false;
+        Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while processing the data',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
+
+    })
   }
 
   public reset(){
