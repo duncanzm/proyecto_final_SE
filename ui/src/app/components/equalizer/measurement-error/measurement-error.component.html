@@ -1,0 +1,23 @@
+<h3>Speaker not suitable for Monitoring</h3>
+<sub>Measurement Error detected. The analysis process detected a frequency that is outside of the acceptance range but no resonace was found for this particular issue. For this particular reason, we cannot confirm it is a valid monitor or not.</sub>
+<details>
+  <summary>Frequencies with anomalies</summary>
+  <table>
+    <thead>
+    <tr>
+      <th>Play</th>
+      <th>Frequency</th>
+      <th>Deviation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let failingFrequency of tableResults">
+      <td (click)="generateSound(Number(failingFrequency.frequency))" style="cursor: pointer; text-decoration:underline "><fa-icon [icon]="faPlay"></fa-icon></td>
+      <td>{{failingFrequency.frequency}}</td>
+      <td>{{failingFrequency.value}}dB</td>
+    </tr>
+    </tbody>
+  </table>
+</details>
+
+

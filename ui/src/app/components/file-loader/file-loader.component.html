@@ -1,0 +1,16 @@
+<h1>Speaker Frequency Analyser</h1>
+
+
+<div *ngIf="!dataLoaded">
+  <h2>To analyze a frequency of a speaker, upload the <code style="font-family: monospace;">.ssa</code> file in the dialog box</h2>
+
+  <div class="upload-file" appFileDrop (fileDropped)="onFilesDropped($event)" (click)="fileInput.click()">
+    <fa-icon [icon]="faUpload"></fa-icon>
+    <input type="file" (change)="fileInputChange($event)" style="display:none" [multiple]="false" #fileInput hidden>
+    <p style="margin-left: 15px;">Drag and drop or click to upload</p>
+  </div>
+</div>
+
+<div *ngIf="dataLoaded">
+  <app-equalizer [data]="dataLoaded" (resetEvent)="resetData()"></app-equalizer>
+</div>

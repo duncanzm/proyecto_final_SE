@@ -1,0 +1,13 @@
+.upload-file{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/1;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  cursor: pointer;
+}

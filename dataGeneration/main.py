@@ -2,6 +2,7 @@ from AmplitudeModifier import AmplitudeModifier
 import pandas as pd
 import random
 from tqdm import tqdm
+import base64
 
 
 frequencies = ["20", "30", "40", "50", "60", "80", "100", "120", "150", "200", "300", "400", "500", "600", "800", "1000", "1200", "2000", "3000", "4000", "5000", "6000", "8000", "10000", "12000", "20000", "Ground-truth"]
@@ -72,17 +73,50 @@ def createRandomData():
             data[affectedResonance] = modifier()
     return data
 
-
-if __name__ == '__main__':
-    rows_to_generate = 600_000
-    df = pd.DataFrame()
-    for i in tqdm(range(rows_to_generate)):
-        df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
-    print(df)
-    print("Quiet: ", quietCount)
-    print("Normal: ", normalCount)
-    print("Loud: ", loudCount)
-
-
+def saveToFile(df):
     df.to_csv("data.csv", index=False)
     print("Data saved to data.csv")
+
+def saveToMultipleFiles(df):
+    for index, row in df.iterrows():
+        frequencies = row.iloc[:-1]
+        type = row.iloc[-1]
+        result = pd.DataFrame([frequencies])
+        name = f"{index}_{type}.ssa"
+
+        json = result.to_json(orient="records")
+        json_bytes = json.encode("utf-8")
+        base64_bytes = base64.b64encode(json_bytes)
+        base64_string = base64_bytes.decode('utf-8')
+        folder = 'ssa_files'
+        with open(f"{folder}/{name}", "w") as f:
+            f.write(base64_string)
+
+
+    print('Files created')
+
+if __name__ == '__main__':
+    selection = ''
+    while selection not in ["q"]:
+        selection = input("Generate batch data or single files? (b/s): (press q for quit)")
+        if selection == "q":
+            break
+        rows_to_generate = int(input("How many speaker emulations do you want to generate?"))
+        df = pd.DataFrame()
+        for i in tqdm(range(rows_to_generate)):
+            df = pd.concat([df, pd.DataFrame([createRandomData()])], ignore_index=True)
+        print(df)
+        print("Quiet: ", quietCount)
+        print("Normal: ", normalCount)
+        print("Loud: ", loudCount)
+        if selection == "b":
+            saveToFile(df)
+        elif selection == "s":
+            saveToMultipleFiles(df)
+        elif selection == "q":
+            print("Goodbye!")
+        else:
+            print("Invalid selection")
+            continue
+
+

@@ -1,0 +1,42 @@
+#frequencies-container{
+  width: 100%;
+  aspect-ratio: 4/1;
+  height: auto;
+}
+
+#frequencies{
+  background-color: #253f41;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.35);
+}
+
+.dot{
+  width: 6px;
+  height: 6px;
+  float: left;
+  margin-top: 6px;
+  margin-right: 5px;
+  border-radius: 100%;
+  outline: solid 2px gray;
+}
+
+.greenDot{
+  background-color: green;
+}
+
+.blueDot{
+  background-color: #3884de;
+}
+
+.redDot{width: 6px;
+  background-color: red;
+}
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+

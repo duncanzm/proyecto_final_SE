@@ -1,0 +1,24 @@
+<h3>Speaker not suitable for Monitoring</h3>
+<sub>The speaker is not suitable for a Studio Monitor as it deviates over 5dB or -5dB from the reference (zero)</sub>
+<details>
+  <summary>Frequencies with Anomalies</summary>
+  <table>
+    <thead>
+    <tr>
+      <th style="width: 50px">Play</th>
+      <th>Frequency</th>
+      <th>Deviation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let failingFrequency of tableResults">
+      <td (click)="generateSound(Number(failingFrequency.frequency))" style="cursor: pointer; margin:0 auto; display: flex; justify-content: center"><fa-icon [icon]="faPlay"></fa-icon></td>
+      <td>{{failingFrequency.frequency}}</td>
+      <td>{{failingFrequency.value}}dB</td>
+    </tr>
+    </tbody>
+  </table>
+</details>
+
+
+
