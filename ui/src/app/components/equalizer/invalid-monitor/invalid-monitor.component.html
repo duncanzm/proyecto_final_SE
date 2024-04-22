@@ -5,14 +5,14 @@
   <table>
     <thead>
     <tr>
-      <th>Play</th>
+      <th style="width: 50px">Play</th>
       <th>Frequency</th>
       <th>Deviation</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let failingFrequency of tableResults">
-      <td (click)="generateSound(Number(failingFrequency.frequency))" style="cursor: pointer; text-decoration:underline "><fa-icon [icon]="faPlay"></fa-icon></td>
+      <td (click)="generateSound(Number(failingFrequency.frequency))" style="cursor: pointer; margin:0 auto; display: flex; justify-content: center"><fa-icon [icon]="faPlay"></fa-icon></td>
       <td>{{failingFrequency.frequency}}</td>
       <td>{{failingFrequency.value}}dB</td>
     </tr>
