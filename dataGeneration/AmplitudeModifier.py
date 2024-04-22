@@ -3,6 +3,6 @@ import random
 
 
 class AmplitudeModifier(Enum):
-    quiet = lambda: random.randint(-10, -6)
-    normal = lambda: random.randint(-5, 5)
-    loud = lambda: random.randint(6, 10)
+    quiet = lambda: str(random.randint(-10, -6))
+    normal = lambda: str(random.randint(-5, 5))
+    loud = lambda: str(random.randint(6, 10))

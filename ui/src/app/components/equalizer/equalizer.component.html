@@ -1,0 +1,23 @@
+<h1 style="float:left;">Sound Monitor Equalizer Analisis</h1> <button style="float:right; margin-top:30px" (click)="reset()">New analysis</button>
+<div id="frequencies-container">
+  <canvas  id="frequencies" >{{ chart }}</canvas>
+  <small>
+    <ul>
+      <li><span class="dot greenDot"></span> frequencies exactly the same volume as expected</li>
+      <li><span class="dot blueDot"></span> frequencies lower or higher than reference within a valid range</li>
+      <li><span class="dot redDot"></span> frequencies outside the range of accepted volume</li>
+    </ul>
+  </small>
+</div>
+
+<div id="details-container" *ngIf="analysisResult">
+  <h2>Results</h2>
+  <app-invalid-monitor *ngIf="analysisResult?.speakerStatus === 'volumeTooHigh' || analysisResult?.speakerStatus === 'volumeTooLow'" [analysisResult]="analysisResult" [data]="data"></app-invalid-monitor>
+  <app-measurement-error *ngIf="analysisResult?.speakerStatus === 'measurementError'" [analysisResult]="analysisResult" [data]="data"></app-measurement-error>
+  <app-valid-monitor *ngIf="analysisResult?.speakerStatus === 'OK'" [analysisResult]="analysisResult" [data]="data"></app-valid-monitor>
+</div>
+
+
+<div class="loader" *ngIf="!analysisResult">
+  <app-loading></app-loading>
+</div>
