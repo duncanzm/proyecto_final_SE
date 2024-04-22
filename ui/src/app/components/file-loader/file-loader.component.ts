@@ -7,6 +7,7 @@ import {NgIf} from "@angular/common";
 import {EqualizerComponent} from "../equalizer/equalizer.component";
 import {LoadingComponent} from "../shared/loading/loading.component";
 import {Frequencies} from "../../../models/frequencies";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-file-loader',
@@ -51,7 +52,12 @@ export class FileLoaderComponent {
         try {
           contentString = atob(reader.result as string);
         }catch (e) {
-          alert("Corrupted file");
+          Swal.fire({
+            title: 'Error!',
+            text: 'The file is corrupted',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
           return;
         }
 
