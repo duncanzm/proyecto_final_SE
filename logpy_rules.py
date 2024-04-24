@@ -7,7 +7,7 @@ value_within_range_rel = Relation()
 categorize_measure_rel = Relation()
 
 def value_within_range(value):
-    return ((value < 5) and (value > -5))
+    return ((value <= 5) and (value >= -5))
 
 def categorize_measure(dict_of_failling_frecuencies, qty):
     print(len(dict_of_failling_frecuencies))
