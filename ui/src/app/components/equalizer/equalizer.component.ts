@@ -29,6 +29,10 @@ export class EqualizerComponent implements OnInit{
   public chart: any;
   @Input()
   data: any;
+
+  @Input()
+  rawData: any;
+
   analysisResult: AnalysisResult | undefined;
 
   @Output()
@@ -120,8 +124,8 @@ export class EqualizerComponent implements OnInit{
 
   public loadData(){
     this.loading = true;
-    let url = 'https://frequency-checker.wiremockapi.cloud/frequency/';
-    this.httpClient.post<AnalysisResult>(url, this.data).subscribe((response) => {
+    let url = 'http://localhost:5000/process_data';
+    this.httpClient.post<AnalysisResult>(url, this.rawData).subscribe((response) => {
       this.loading = false;
       this.analysisResult = response;
     }, error => {
