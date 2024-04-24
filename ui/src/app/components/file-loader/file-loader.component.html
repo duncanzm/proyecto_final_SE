@@ -12,5 +12,5 @@
 </div>
 
 <div *ngIf="dataLoaded">
-  <app-equalizer [data]="dataLoaded" (resetEvent)="resetData()"></app-equalizer>
+  <app-equalizer [data]="dataLoaded" [rawData]="rawData" (resetEvent)="resetData()"></app-equalizer>
 </div>

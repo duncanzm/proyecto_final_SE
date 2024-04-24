@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from logpy_rules import *
 from collections.abc import Iterable
 import json
@@ -6,7 +7,7 @@ import base64
 
 
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/process_data', methods=['POST'])
 def process_data():
 

@@ -28,6 +28,7 @@ export class FileLoaderComponent {
   protected readonly faUpload = faUpload;
 
   dataLoaded: Frequencies | null = null;
+  rawData: String | null = null;
 
 
   constructor(){
@@ -50,6 +51,7 @@ export class FileLoaderComponent {
       reader.onload = (e) => {
         let contentString;
         try {
+          this.rawData = reader.result as string
           contentString = atob(reader.result as string);
         }catch (e) {
           Swal.fire({
