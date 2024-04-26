@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  angular:
+    container_name: UI-Layer
+    build: ./UI
+    ports:
+      - "4200:80"
+    depends_on:
+      - flask
+    expose:
+      - 4200
+
+  flask:
+    container_name: Backend-Layer
+    build: ./Backend
+    ports:
+      - "4242:8000"

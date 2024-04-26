@@ -124,7 +124,7 @@ export class EqualizerComponent implements OnInit{
 
   public loadData(){
     this.loading = true;
-    let url = 'http://localhost:5000/process_data';
+    let url = 'http://localhost:4242/process_data';
     this.httpClient.post<AnalysisResult>(url, this.rawData).subscribe((response) => {
       this.loading = false;
       this.analysisResult = response;
