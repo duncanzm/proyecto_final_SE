@@ -49,4 +49,4 @@ Para poner en marcha la aplicación, sigue estos pasos:
 
 5. Sin embargo, para acceder a la aplicación deberás ir a un browser y acceder a ```localhost:4200```
 
-6. Después de acceder a este, verás la opción de subir archivos de ```.ssa.``` Estos puede encontrarse en el folder ```proyecto_final_SE/dataGeneration/ssa_files```. Depende del cuál elijas, el sistema analizará y dará su resultado de estos, que serían si el parlante es adecuado o no, si el archivo está corrupto o si no es válido.
+6. Después de acceder a este, verás la opción de subir archivos de ```.ssa```. Estos puede encontrarse en el folder ```proyecto_final_SE/dataGeneration/ssa_files```. Depende del cuál elijas, el sistema analizará y dará su resultado de estos, que serían si el parlante es adecuado o no, si el archivo está corrupto o si no es válido.
