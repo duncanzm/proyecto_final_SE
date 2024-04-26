@@ -27,7 +27,7 @@ Para poner en marcha la aplicación, sigue estos pasos:
    git clone https://github.com/duncanzm/proyecto_final_SE.git
    cd proyecto_final_SE
 
-2. Revisa si Docker está arriba corriendo. Si no, accede a este:
+2. Revisa si Docker está arriba corriendo. Si no, ponlo a correr abriendo la aplicación anteriormente descargada:
    ```bash
    docker ps
    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
